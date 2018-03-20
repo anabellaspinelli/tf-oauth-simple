@@ -7,6 +7,8 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 
 app.get("/callback", (req, res, next) => {
+  console.log("callback");
+
   return request
     .post("https://api.typeform.com/oauth/token")
     .type("form")
