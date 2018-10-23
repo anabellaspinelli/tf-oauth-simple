@@ -14,8 +14,8 @@ app.get("/callback", (req, res, next) => {
     .type("form")
     .send({
       code: req.query.code,
-      client_id: "HZTj8rdGhFkDFfQyZWfkRFPmBQCJ5bnjkSoqBPHM66tH",
-      client_secret: "EFTXokx7mzteXTazav6EjSrpduq8bEPrs4thKsx8ic5N",
+      client_id: "7k5Lrifr1qVAWnZ6CvWBrJjgPvLkjwL3Z5JMSoAvCjTw",
+      client_secret: "abcabcabc",
       redirect_uri: "https://typeform-js-oauth.herokuapp.com/callback"
     })
     .then(r => {
