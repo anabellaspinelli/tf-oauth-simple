@@ -14,14 +14,15 @@ app.get("/callback", (req, res, next) => {
     .type("form")
     .send({
       code: req.query.code,
-      client_id: "HZTj8rdGhFkDFfQyZWfkRFPmBQCJ5bnjkSoqBPHM66tH",
-      client_secret: "EFTXokx7mzteXTazav6EjSrpduq8bEPrs4thKsx8ic5N",
-      redirect_uri: "https://typeform-js-oauth.herokuapp.com/callback"
+      client_id: "3nbjBd6tNZX51HVDZgfRSEQ6ATCE7s6vC4Zw5VZe23qB",
+      client_secret: process.env.CLIENT_SECRET,
+      redirect_uri: "http://localhost:5000/callback"
     })
     .then(r => {
+      console.log(r.body)
       return res.send(`
         <p>Your token is <span style="color: green">${
-          r.body.access_token
+        r.body.access_token
         }</span></p>
       `);
     })
