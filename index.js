@@ -6,23 +6,32 @@ const request = require("superagent");
 app.use(express.static("public"));
 app.use(bodyParser.json());
 
-app.get("/callback", (req, res, next) => {
-  console.log("callback");
-
+app.get("/redirect", (req, res, next) => {
   return request
     .post("https://api.typeform.com/oauth/token")
     .type("form")
     .send({
       code: req.query.code,
-      client_id: "7k5Lrifr1qVAWnZ6CvWBrJjgPvLkjwL3Z5JMSoAvCjTw",
-      client_secret: "abcabcabc",
-      redirect_uri: "https://typeform-js-oauth.herokuapp.com/callback"
+      client_id: "HWzbSrmTLu9eh6UcZSQYL4NaSPgbTCvesaXBY1Nc9ruY",
+      client_secret: process.env.CLIENT_SECRET,
+      redirect_uri: "http://localhost:5000/redirect"
+    })
+    .then(r => {
+      return request
+        .get('https://api.typeform.com/me')
+        .set({
+          Authorization: `Bearer ${r.body.access_token}`
+        })
+        .then(meRes => meRes)
     })
     .then(r => {
       return res.send(`
-        <p>Your token is <span style="color: green">${
-          r.body.access_token
-        }</span></p>
+        <p>Hello ${r.body.alias}!!
+
+        Your profile data is:
+        <pre style="color: green">${
+        JSON.stringify(r.body, 4)
+        }</pre></p>
       `);
     })
     .catch(err => {
