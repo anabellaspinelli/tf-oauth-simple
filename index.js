@@ -12,7 +12,7 @@ app.get("/redirect", (req, res, next) => {
     .type("form")
     .send({
       code: req.query.code,
-      client_id: "HWzbSrmTLu9eh6UcZSQYL4NaSPgbTCvesaXBY1Nc9ruY",
+      client_id: "91u9WDHqQfkU5QcEuF9khYV14saKUZKUGZMAZyHDfbfu",
       client_secret: process.env.CLIENT_SECRET,
       redirect_uri: "http://localhost:5000/redirect"
     })
@@ -26,11 +26,11 @@ app.get("/redirect", (req, res, next) => {
     })
     .then(r => {
       return res.send(`
-        <p>Hello ${r.body.alias}!!
+        <p style="font-size: 20px;">Hello ${r.body.alias}!!
 
         Your profile data is:
-        <pre style="color: green">${
-        JSON.stringify(r.body, 4)
+        <pre style="color: green; font-size: 20px;">${
+        JSON.stringify(r.body, ' ', 4)
         }</pre></p>
       `);
     })
